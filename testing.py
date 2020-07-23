@@ -31,7 +31,16 @@ himg,wImg,_ = img.shape
 boxes = pytesseract.image_to_boxes(img)
 #acquiring the location for every character
 for b in boxes.splitlines():
+    #split into strings, formatting x, y, length, width 
+    b = b.split(' ')
+
     print(b)
+
+    x,y,w,h = int(b[1]),int(b[2]),int(b[3]),int(b[4])
+    #how our rectangle will look. each will have rectangle
+    cv2.rectangle(img,(x,y),(w+x,h+y),(0,0,255),1)
+
+    
  
 cv2.imshow('Result',img)
 cv2.waitKey(0)
