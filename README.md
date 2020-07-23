@@ -10,3 +10,6 @@ tesseract help from
 https://www.youtube.com/watch?v=4DrCIVS5U3Y]
 
 Read in file and change colors to rgb for py
+
+read in into string
+read in boxes function

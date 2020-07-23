@@ -21,7 +21,11 @@ img = cv2.imread('opencv.png')
 
 img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
  #getting our string 
-print(pytesseract.image_to_string(img))
+
+#print(pytesseract.image_to_string(img))
+
+print(pytesseract.image_to_boxes(img))
+
 
  
 cv2.imshow('Result',img)
