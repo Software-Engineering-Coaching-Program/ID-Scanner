@@ -32,7 +32,8 @@ img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 """ #######Detecting characters 
 #take info of image
 hImg,wImg,_ = img.shape
-boxes = pytesseract.image_to_boxes(img)
+cong = 'r -- oem 3 --psm 6 outputbase digits'
+boxes = pytesseract.image_to_boxes(img,config= cong)
 #acquiring the location for every character
 for b in boxes.splitlines():
     #split into strings, formatting x, y, length, width 
@@ -47,8 +48,8 @@ for b in boxes.splitlines():
     #put text around box, b0 is first element of text 
     #putText(img, text, org, fontFace, fontScale, color, thickness=None, lineType=None, bottomLeftOrigin=None
     cv2.putText(img,b[0],(x,hImg-y+25),cv2.FONT_HERSHEY_COMPLEX,1,(0,0,255),2)
- """
-    #for words
+ 
+    #for words """
 
 #######Detecting Words 
 
@@ -69,12 +70,38 @@ for x,b in enumerate(boxes.splitlines()):
 
             x,y,w,h = int(b[6]),int(b[7]),int(b[8]),int(b[9])
         #how our rectangle will look. each will have rectangle
-        #subtract y to shorten the amount
+        
             cv2.rectangle(img,(x,y),(w+x,h+y),(0,0,255),2)
          #put text around box, b0 is first element of text 
         #putText(img, text, org, fontFace, fontScale, color, thickness=None, lineType=None, bottomLeftOrigin=None
-        ##cv2.putText(img,b[0],(x,hImg-y+25),cv2.FONT_HERSHEY_COMPLEX,1,(0,0,255),2) 
+            cv2.putText(img,b[11],(x,y),cv2.FONT_HERSHEY_COMPLEX,1,(0,0,255),2)   
     
- 
+""" ######Detecting numbers 
+
+hImg,wImg,_ = img.shape
+boxes = pytesseract.image_to_data(img)
+#acquiring the location for every character
+
+cong = r'--oem 3 --psm 6 outputbase digits'
+boxes = pytesseract.image_to_data(img,config =cong)
+print(boxes)
+for x,b in enumerate(boxes.splitlines()):
+    #split into strings, formatting x, y, length, width 
+    if x!=0:
+
+        b = b.split()
+
+        print(b)
+        #only bring 12 because words have 12 and numbers have 11 in data
+        if len(b)==12:
+
+            x,y,w,h = int(b[6]),int(b[7]),int(b[8]),int(b[9])
+        #how our rectangle will look. each will have rectangle
+        
+            cv2.rectangle(img,(x,y),(w+x,h+y),(0,0,255),2)
+         #put text around box, b0 is first element of text 
+        #putText(img, text, org, fontFace, fontScale, color, thickness=None, lineType=None, bottomLeftOrigin=None
+            cv2.putText(img,b[11],(x,y),cv2.FONT_HERSHEY_COMPLEX,1,(0,0,255),2) """  
+
 cv2.imshow('Result',img)
 cv2.waitKey(0) 
