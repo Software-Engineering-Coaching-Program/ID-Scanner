@@ -13,3 +13,5 @@ Read in file and change colors to rgb for py
 
 read in into string
 read in boxes function
+read in characters
+read in boxes for string len for 12 and over
