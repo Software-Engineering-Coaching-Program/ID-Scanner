@@ -26,6 +26,10 @@ img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 #detecting characters
 #print(pytesseract.image_to_boxes(img))
 
+
+
+
+""" #######Detecting characters 
 #take info of image
 hImg,wImg,_ = img.shape
 boxes = pytesseract.image_to_boxes(img)
@@ -43,6 +47,8 @@ for b in boxes.splitlines():
     #put text around box, b0 is first element of text 
     #putText(img, text, org, fontFace, fontScale, color, thickness=None, lineType=None, bottomLeftOrigin=None
     cv2.putText(img,b[0],(x,hImg-y+25),cv2.FONT_HERSHEY_COMPLEX,1,(0,0,255),2)
+ """
+    #for words
 
     
  
