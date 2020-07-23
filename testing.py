@@ -8,8 +8,7 @@
 
 #print(text)
 
-#import cv2
-#import pytesseract as tess 
+#import tesseract command down below
 #tess.pytesseract.tesseract_cmd = r'C:\Users\james\AppData\Local\Tesseract-OCR\tesseract'
 
 
@@ -21,7 +20,8 @@ pytesseract.pytesseract.tesseract_cmd = r'C:\Users\james\AppData\Local\Tesseract
 img = cv2.imread('opencv.png')
 
 img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
- 
+ #getting our string 
+print(pytesseract.image_to_string(img))
 
  
 cv2.imshow('Result',img)
